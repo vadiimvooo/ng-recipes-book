@@ -21,7 +21,7 @@ export class RecipeResolver implements Resolve<boolean> {
     const recipes = this.recipeService.getRecipes();
 
     if (!recipes[id]) {
-      this.router.navigate(['recipes']);
+      this.router.navigate(['not-found']);
     }
 
     return of(true);

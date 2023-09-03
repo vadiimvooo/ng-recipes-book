@@ -1,14 +1,14 @@
-<div class="row">
-  <div class="col-xs-12 col-md-6 col-md-offset-3">
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-4">
     <div class="alert alert-danger" *ngIf="error">
-      <p>{{ error }}</p>
+      <p class="mb-0">{{ error }}</p>
     </div>
     <div *ngIf="isLoading" style="text-align: center;">
       <app-loading-spinner></app-loading-spinner>
     </div>
     <form [formGroup]="userCredentials" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
-      <div class="form-group">
-        <label for="email">E-Mail</label>
+      <div class="form-group mb-3">
+        <label for="email" class="mb-1">E-Mail</label>
         <input
           type="email"
           id="email"
@@ -18,7 +18,7 @@
         />
         <p *ngIf="userCredentials.get('email')?.invalid && userCredentials.get('email')?.touched">Your email is invalid!</p>
       </div>
-      <div class="form-group">
+      <div class="form-group mb-3">
         <label for="password">Password</label>
         <input
           type="password"
@@ -29,7 +29,7 @@
         />
         <p *ngIf="userCredentials.get('password')?.invalid && userCredentials.get('password')?.touched">Your password is invalid!</p>
       </div>
-      <div>
+      <div class="d-flex justify-content-center gap-3">
         <button
           class="btn btn-primary"
           type="submit"
@@ -37,7 +37,6 @@
         >
           {{ isLoginMode ? 'Login' : 'Sign Up' }}
         </button>
-        |
         <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
           Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
         </button>
