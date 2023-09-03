@@ -1,6 +1,6 @@
 # ng-recipes-book
 
-[DEMO](https://github.com/vadiimvooo/ng-recipes-book)
+[DEMO](https://vadiimvooo.github.io/ng-recipes-book/)
 
 ### Stack technologies were used:
 
