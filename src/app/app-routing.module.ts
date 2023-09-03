@@ -8,8 +8,8 @@ import {RecipeEditComponent} from "./components/recipe-book/recipe-edit/recipe-e
 import {RecipesResolverService} from "./components/recipe-book/recipes-resolver.service";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {RecipeResolver} from "./components/recipe-book/recipe.resolver";
-import {AuthComponent} from "./auth/auth/auth.component";
-import {AuthGuard} from "./auth/auth/auth.guard";
+import {AuthComponent} from "./auth/auth.component";
+import {AuthGuard} from "./auth/auth.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: 'recipes', pathMatch: "full"},
