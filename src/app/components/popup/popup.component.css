@@ -1,0 +1,78 @@
+.popup_wrapper {
+  border-radius: 4px;
+  background-color: #ffffff;
+  position: fixed;
+  z-index: 100;
+  top: 24px;
+  right: 40px;
+  min-width: 380px;
+  max-width: 420px;
+  word-break: break-word;
+  border: 1px solid #333;
+}
+
+.img {
+  margin-right: 22px;
+}
+
+.inner_wrapper {
+  position: relative;
+  padding: 16px 22px;
+}
+
+.popup_title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #424242;
+  margin-bottom: 4px;
+}
+
+.popup_text {
+  font-size: 12px;
+  font-weight: normal;
+  color: #4b4b4b;
+}
+
+.progress_bar {
+  width: 100%;
+  background: #fd3825;
+  height: 3px;
+  transition: width 0.1s;
+  transition-timing-function: ease-out;
+}
+
+.progress_bar.success {
+  background: #46a958;
+}
+
+.error_title {
+  color: #fd3825;
+}
+
+.popup_wrapper-success {
+  background-color: green;
+  border-color: green;
+}
+
+.popup_wrapper-error {
+  background-color: red;
+  border-color: red;
+}
+
+.popup_wrapper-warning {
+  background-color: yellow;
+  border-color: yellow;
+}
+
+.popup_text--success,
+.popup_text--error,
+.popup_text--warning{
+  color: white;
+}
+
+.progress_bar--success,
+.progress_bar--error,
+.progress_bar--warning {
+  background: white;
+}
+

@@ -1,0 +1,49 @@
+<div
+  (mouseenter)="stopCountDown()"
+  (mouseleave)="countDown()"
+  class="popup_wrapper"
+  [ngClass]="{
+  'popup_wrapper-success': type === 1,
+  'popup_wrapper-error': type === 0,
+  'popup_wrapper-warning': type === 2
+  }"
+  [@openClose]="popupService.data && popupService.data.show ? 'open' : 'closed'"
+  (click)="disablePopup()"
+>
+  <div class="inner_wrapper">
+    <div class="flex" *ngIf="popupService.data">
+      <div class="popup_content">
+        <h5
+          class="popup_title"
+          [ngClass]="{
+            'popup_text--success': type === 1,
+            'popup_text--error': type === 0,
+            'popup_text--warning': type === 2
+          }"
+        >
+          {{popupService.data.title}}
+        </h5>
+        <div
+          class="popup_text"
+          [ngClass]="{
+            'popup_text--success': type === 1,
+            'popup_text--error': type === 0,
+            'popup_text--warning': type === 2
+          }"
+        >
+          {{popupService.data.content}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="progress_bar"
+    [ngClass]="{
+      'progress_bar--success': type === 1,
+      'progress_bar--error': type === 0,
+      'progress_bar--warning': type === 2
+    }"
+    #element
+  ></div>
+</div>

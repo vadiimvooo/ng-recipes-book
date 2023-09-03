@@ -24,6 +24,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
+import { PopupComponent } from './components/popup/popup.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loa
     NotFoundComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loa
     NgbModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ShoppingListService,

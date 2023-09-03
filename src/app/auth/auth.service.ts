@@ -9,6 +9,7 @@ import {DataStorageService} from "../components/shared/data-storage.service";
 import {AuthErrors} from "../const/auth.errors";
 import {urls} from "../const/urls";
 import {IAuthResponse} from "../models/auth.model";
+import {PopupService} from "../services/popup.service";
 
 export interface IUserCredentials {
   email: string,
@@ -23,7 +24,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private dataStorageService: DataStorageService
+    private dataStorageService: DataStorageService,
+    private popupService: PopupService
   ) {}
 
   signup(userCredentials: IUserCredentials) {
@@ -90,6 +92,7 @@ export class AuthService {
   logout() {
     this.user.next(null);
     this.router.navigate(['/auth']);
+    this.popupService.success("Logout", "Logout success");
     this.dataStorageService.removeUserData();
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
@@ -148,6 +151,9 @@ export class AuthService {
       default:
         break;
     }
+
+    console.log(errorMessage);
+    console.log(errorRes.error.error.message);
     return throwError(() => errorMessage);
   }
 }
