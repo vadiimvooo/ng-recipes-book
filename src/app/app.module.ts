@@ -21,8 +21,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RecipeService} from "./services/recipe.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { AuthComponent } from './auth/auth/auth.component';
-import {AuthInterceptor} from "./services/auth.interceptor";
+import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptorService } from "./auth/auth-interceptor.service";
 import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
@@ -57,7 +57,7 @@ import { LoadingSpinnerComponent } from './components/shared/loading-spinner/loa
     RecipeService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: AuthInterceptorService,
       multi: true
     }
   ],
