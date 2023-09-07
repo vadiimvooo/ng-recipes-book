@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { RecipeService } from '../../../services/recipe.service';
+import {PopupService} from "../../../services/popup.service";
 
 interface IIngredientGroup {
   name: FormControl<string | null>,
@@ -21,7 +22,8 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
-    private router: Router
+    private router: Router,
+    private popupService: PopupService
   ) {}
 
   ngOnInit() {
@@ -35,8 +37,10 @@ export class RecipeEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+      this.popupService.success("Updated", "Recipe details were updated!")
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
+      this.popupService.success("Added", "Recipe was added!")
     }
     this.onCancel();
   }

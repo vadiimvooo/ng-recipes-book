@@ -5,6 +5,7 @@ import { Recipe } from './recipe.model';
 import { RecipeService } from '../../services/recipe.service';
 import {User} from "../../auth/user.model";
 import {urls} from "../../const/urls";
+import {PopupService} from "../../services/popup.service";
 
 export interface IUserLocalStorage {
   id: string,
@@ -19,6 +20,7 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private recipeService: RecipeService,
+    private popupService: PopupService
   ) {}
 
   saveRecipes() {
@@ -28,8 +30,13 @@ export class DataStorageService {
         urls.recipes,
         recipes
       )
-      .subscribe(response => {
-        console.log(response);
+      .subscribe({
+        next: () => {
+          this.popupService.success("Success", "Data was saved successful");
+        },
+        error: () => {
+          this.popupService.error("Failure", "Saving the data was unsuccessful");
+        }
       });
   }
 

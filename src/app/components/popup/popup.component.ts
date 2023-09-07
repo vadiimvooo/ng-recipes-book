@@ -28,6 +28,7 @@ import {PopupService, popupTypes} from "../../services/popup.service";
 export class PopupComponent implements OnInit {
   @ViewChild('element', { static: false }) progressBar!: ElementRef;
   progressInterval!: any;
+  barInterval!: any;
   type!: popupTypes;
 
   constructor(
@@ -49,21 +50,26 @@ export class PopupComponent implements OnInit {
   countDown() {
     this.progressBar.nativeElement.style.width = this.popupService.data.progressWidth;
     this.progressInterval = setInterval(() => {
-      const width = parseInt(this.progressBar.nativeElement.style.width, 10)
+      this.barInterval = setInterval(() => {
+        const width = parseInt(this.progressBar.nativeElement.style.width, 10)
 
-      if (width <= 0) {
-        this.popupService.hide();
-        clearInterval(this.progressInterval);
-        return;
-      }
+        if (width <= 0) {
+          clearInterval(this.progressInterval);
+          clearInterval(this.barInterval);
+          this.popupService.hide();
+          return;
+        }
 
-      this.popupService.data.progressWidth = String(width - 10);
-      this.progressBar.nativeElement.style.width = this.popupService.data.progressWidth + '%';
-    }, 150)
+        this.popupService.data.progressWidth = String(width - 1);
+        this.progressBar.nativeElement.style.width = this.popupService.data.progressWidth + '%';
+        clearInterval(this.barInterval);
+      }, 3)
+    }, 30)
   }
 
   stopCountDown() {
     clearInterval(this.progressInterval);
+    clearInterval(this.barInterval);
   }
 
   disablePopup() {
