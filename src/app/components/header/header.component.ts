@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataStorageService} from "../shared/data-storage.service";
 import {AuthService} from "../../auth/auth.service";
 import {Subject, takeUntil} from "rxjs";
+import {PopupService} from "../../services/popup.service";
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,6 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private dataStorageService: DataStorageService,
     private authService: AuthService,
+    private popupService: PopupService
   ) {
   }
 
@@ -34,7 +37,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onFetchData() {
     this.dataStorageService.fetchRecipes()
-      .subscribe();
+      .subscribe({
+        next: () => {
+          this.popupService.success("Success", "Data was fetched successful");
+        },
+        error: () => {
+          this.popupService.error("Failure", "Fetching the data was unsuccessful");
+        }
+      });
   }
 
   onLogout() {

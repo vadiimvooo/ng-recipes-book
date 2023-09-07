@@ -3,6 +3,7 @@ import {Ingredient} from "../../shared/ingredient.model";
 import {ShoppingListService} from "../../../services/shopping-list.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
+import {PopupService} from "../../../services/popup.service";
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -16,7 +17,10 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy{
   editMode = false;
   editedItem!: Ingredient;
 
-  constructor(private shoppingListService: ShoppingListService) {
+  constructor(
+    private shoppingListService: ShoppingListService,
+    private popupService: PopupService
+  ) {
   }
 
   ngOnInit() {
@@ -44,12 +48,14 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy{
   onSubmit() {
     if (this.editMode) {
       this.shoppingListService.updateIngredient(this.editedItemIndex, this.ingredientInfo.value);
+      this.popupService.success("Updated", "Update of ingredient was successful");
     } else {
       const ingredient = new Ingredient(
         this.ingredientInfo.value.name,
         this.ingredientInfo.value.amount
       )
       this.shoppingListService.addIngredient(ingredient);
+      this.popupService.success("Added", "New ingredient was added!");
     }
 
     this.onClear()
