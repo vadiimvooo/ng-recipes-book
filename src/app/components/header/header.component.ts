@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DataStorageService} from "../shared/data-storage.service";
-import {AuthService} from "../../auth/auth.service";
+import {DataStorageService} from "../../services/data-storage.service";
+import {AuthService} from "../../modules/auth/services/auth.service";
 import {Subject, takeUntil} from "rxjs";
-import {PopupService} from "../../services/popup.service";
+import {PopupService} from "../../modules/shared/services/popup.service";
 
 @Component({
   selector: 'app-header',
